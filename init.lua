@@ -835,7 +835,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        preset = 'enter',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -871,7 +871,21 @@ require('lazy').setup({
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
+      fuzzy = {
+        implementation = 'prefer_rust_with_warning',
+        sorts = {
+          -- (optionally) always prioritize exact matches
+          -- 'exact',
+
+          -- pass a function for custom behavior
+          -- function(item_a, item_b)
+          --   return item_a.score > item_b.score
+          -- end,
+
+          'score',
+          'sort_text',
+        },
+      },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
