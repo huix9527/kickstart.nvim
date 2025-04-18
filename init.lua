@@ -874,16 +874,12 @@ require('lazy').setup({
       fuzzy = {
         implementation = 'prefer_rust_with_warning',
         sorts = {
-          -- (optionally) always prioritize exact matches
-          -- 'exact',
-
-          -- pass a function for custom behavior
-          -- function(item_a, item_b)
-          --   return item_a.score > item_b.score
-          -- end,
-
+          'exact',
           'score',
           'sort_text',
+        },
+        prebuilt_binaries = {
+          download = true,
         },
       },
 
